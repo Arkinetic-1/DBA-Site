@@ -25,7 +25,7 @@ try {
 
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="utf-8">
@@ -95,18 +95,131 @@ try {
     <hr>
 
     <div class="container-fluid">
-        <div class="row">
-            <h1>Borrowers</h1>
-            <div class="col-12 border border-2 border-black mx-auto"></div>
+
+        <div class="col-12 border border-2 rounded mx-auto p-3">
+
+            <div class="row p-2">
+                <h1>Borrowers</h1>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-3 d-flex g-1">
+                            <p>Borrower Type</p>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    All Types
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 d-flex g-1">
+                            <p>Sort By</p>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Borrower ID
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 d-flex g-1">
+                            <p>Ordery By</p>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Ascending
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 d-flex g-1">
+                            <p>Group By</p>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Borrower Type
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="table table-striped mt-2">
+
+                    <thead>
+
+                        <tr>
+                            <th>Borrower ID</th>
+                            <th>Borrower No.</th>
+                            <th>Full Name</th>
+                            <th>Borrower_type</th>
+                            <th>Actions</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>
+                            </td>
+
+                            <td>
+                            </td>
+
+                            <td>
+                            </td>
+
+                            <td>
+                            </td>
+
+                            <td>
+                                <form
+                                    method="post"
+                                    style="display:inline">
+
+                                    <input
+                                        type="hidden"
+                                        name="action"
+                                        value="delete">
+
+                                    <input
+                                        type="hidden"
+                                        name="borrower_id"
+                                        value="">
+
+                                    <button type="submit">
+                                        Delete
+                                    </button>
+
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
         </div><br>
-        <div class="row">
+        <!-- <div class="row">
             <h1>Equipment</h1>
             <div class="col-12 border border-2 border-black mx-auto"></div>
         </div><br>
         <div class="row">
             <h1>Transactions</h1>
             <div class="col-12 border border-2 border-black mx-auto"></div>
-        </div><br>
+        </div><br> -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
