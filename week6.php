@@ -21,6 +21,19 @@ try {
 
     die('Database connection failed.');
 }
+
+
+// ----------------------------------------------------
+// READ
+// ----------------------------------------------------
+
+$stmt = $pdo->query(
+    'SELECT borrower_id, borrower_no, full_name, borrower_type
+     FROM borrowers
+     ORDER BY borrower_id DESC'
+);
+
+$borrowers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 
@@ -101,7 +114,7 @@ try {
             <div class="row p-2">
                 <h1>Borrowers</h1>
                 <div class="col-12">
-                    <div class="row">
+                    <div class="row g-1">
                         <div class="col-3 d-flex g-1">
                             <p>Borrower Type</p>
                             <div class="dropdown">
@@ -128,8 +141,8 @@ try {
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-3 d-flex g-1">
-                            <p>Ordery By</p>
+                        <div class="col-3 d-flex p-1">
+                            <p>Order By </p>
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Ascending
@@ -171,43 +184,78 @@ try {
 
                     </thead>
 
-                    <tbody>
-                        <tr>
-                            <td>
-                            </td>
+                   <tbody>
 
-                            <td>
-                            </td>
+        <?php foreach ($borrowers as $borrower): ?>
 
-                            <td>
-                            </td>
+            <tr>
 
-                            <td>
-                            </td>
+                <td>
+                    <?= (int)$borrower['borrower_id'] ?>
+                </td>
 
-                            <td>
-                                <form
-                                    method="post"
-                                    style="display:inline">
+                <td>
+                    <?=
+                        htmlspecialchars(
+                            $borrower['borrower_no'],
+                            ENT_QUOTES,
+                            'UTF-8'
+                        )
+                    ?>
+                </td>
 
-                                    <input
-                                        type="hidden"
-                                        name="action"
-                                        value="delete">
+                <td>
+                    <?=
+                        htmlspecialchars(
+                            $borrower['full_name'],
+                            ENT_QUOTES,
+                            'UTF-8'
+                        )
+                    ?>
+                </td>
 
-                                    <input
-                                        type="hidden"
-                                        name="borrower_id"
-                                        value="">
+                <td>
+                    <?=
+                        htmlspecialchars(
+                            $borrower['borrower_type'] ?? '',
+                            ENT_QUOTES,
+                            'UTF-8'
+                        )
+                    ?>
+                </td>
 
-                                    <button type="submit">
-                                        Delete
-                                    </button>
+                <td>
 
-                                </form>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <form
+                        method="post"
+                        style="display:inline"
+                    >
+
+                        <input
+                            type="hidden"
+                            name="action"
+                            value="delete"
+                        >
+
+                        <input
+                            type="hidden"
+                            name="borrower_id"
+                            value="<?= (int)$borrower['borrower_id'] ?>"
+                        >
+
+                        <button type="submit">
+                            Delete
+                        </button>
+
+                    </form>
+
+                </td>
+
+            </tr>
+
+        <?php endforeach; ?>
+
+        </tbody>
 
                 </table>
             </div>
