@@ -18,7 +18,6 @@ try {
         PDO::ATTR_ERRMODE,
         PDO::ERRMODE_EXCEPTION
     );
-
 } catch (PDOException $e) {
 
     die('Database connection failed.');
@@ -34,7 +33,7 @@ if (
     ($_POST['action'] ?? '') === 'create'
 ) {
 
-   $stmt = $pdo->prepare(
+    $stmt = $pdo->prepare(
         'INSERT INTO equipment
             (property_no, equipment_name, quantity_available)
          VALUES
@@ -127,13 +126,11 @@ $equipment = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1"
-    >
+        content="width=device-width, initial-scale=1">
 
     <title>BORROWER'S CRUD</title>
 
     <style>
-
         body {
             font-family: Arial, sans-serif;
             max-width: 900px;
@@ -181,7 +178,6 @@ $equipment = $stmt->fetchAll(PDO::FETCH_ASSOC);
         .nav-links a {
             text-decoration: none;
         }
-
     </style>
 
 </head>
@@ -190,11 +186,19 @@ $equipment = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <nav class="navbar">
         <h1>BORROWER'S CRUD</h1>
         <ul class="nav-links">
-            <li><a href="borrower.php">Borrowers</a></li>
-            <li><a href="transactions.php">Transactions</a></li>
-            <li><a href="records.php">Records</a></li>
+            <li><a href="week6.php">Week 6</a></li>
+            <li><a href="week7.php">Week 7</a></li>
+            <li><a href="week8.php">Week 8</a></li>
+            <li><a href="week10.php">Week 10</a></li>
         </ul>
-    </nav> <hr>
+    </nav>
+    <div class="col-12 d-flex justify-content-between align-items-center">
+        <a href="borrower.php">Borrowers</a>
+        <a href="#">Equipment</a>
+        <a href="transactions.php">Transactions</a>
+        <a href="records.php">Records</a>
+    </div>
+    <hr>
 
 
     <h2>ADD EQUIPMENT</h2>
@@ -204,28 +208,24 @@ $equipment = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <input
             type="hidden"
             name="action"
-            value="create"
-        >
+            value="create">
 
         <input
             type="text"
             name="property_no"
             placeholder="Property No."
-            required
-        >
+            required>
 
         <input
             type="text"
             name="equipment_name"
             placeholder="Equipment Name"
-            required
-        >
+            required>
 
         <input
             type="integer"
             name="quantity_available"
-            placeholder="Quantity Available"
-        >
+            placeholder="Quantity Available">
 
         <button type="submit">
             Add Equipment
@@ -254,74 +254,71 @@ $equipment = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <tbody>
 
-        <?php foreach ($equipment as $eq): ?>
+            <?php foreach ($equipment as $eq): ?>
 
-            <tr>
+                <tr>
 
-                <td>
-                    <?= (int)$eq['equipment_id'] ?>
-                </td>
+                    <td>
+                        <?= (int)$eq['equipment_id'] ?>
+                    </td>
 
-                <td>
-                    <?=
+                    <td>
+                        <?=
                         htmlspecialchars(
                             $eq['property_no'],
                             ENT_QUOTES,
                             'UTF-8'
                         )
-                    ?>
-                </td>
+                        ?>
+                    </td>
 
-                <td>
-                    <?=
+                    <td>
+                        <?=
                         htmlspecialchars(
                             $eq['equipment_name'],
                             ENT_QUOTES,
                             'UTF-8'
                         )
-                    ?>
-                </td>
+                        ?>
+                    </td>
 
-                <td>
-                    <?=
+                    <td>
+                        <?=
                         htmlspecialchars(
                             $eq['quantity_available'] ?? '',
                             ENT_QUOTES,
                             'UTF-8'
                         )
-                    ?>
-                </td>
+                        ?>
+                    </td>
 
-                <td>
+                    <td>
 
-                    <form
-                        method="post"
-                        style="display:inline"
-                    >
+                        <form
+                            method="post"
+                            style="display:inline">
 
-                        <input
-                            type="hidden"
-                            name="action"
-                            value="delete"
-                        >
+                            <input
+                                type="hidden"
+                                name="action"
+                                value="delete">
 
-                        <input
-                            type="hidden"
-                            name="equipment_id"
-                            value="<?= (int)$eq['equipment_id'] ?>"
-                        >
+                            <input
+                                type="hidden"
+                                name="equipment_id"
+                                value="<?= (int)$eq['equipment_id'] ?>">
 
-                        <button type="submit">
-                            Delete
-                        </button>
+                            <button type="submit">
+                                Delete
+                            </button>
 
-                    </form>
+                        </form>
 
-                </td>
+                    </td>
 
-            </tr>
+                </tr>
 
-        <?php endforeach; ?>
+            <?php endforeach; ?>
 
         </tbody>
 
@@ -337,33 +334,28 @@ $equipment = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <input
             type="hidden"
             name="action"
-            value="update"
-        >
+            value="update">
 
         <input
             type="number"
             name="equipment_id"
             placeholder="Equipment ID"
-            required
-        >
+            required>
 
         <input
             type="text"
             name="property_no"
-            placeholder="Property No."
-        >
+            placeholder="Property No.">
 
         <input
             type="text"
             name="equipment_name"
-            placeholder="Equipment Name"
-        >
+            placeholder="Equipment Name">
 
         <input
             type="integer"
             name="quantity_available"
-            placeholder="Quantity Available"
-        >
+            placeholder="Quantity Available">
 
         <button type="submit">
             Update

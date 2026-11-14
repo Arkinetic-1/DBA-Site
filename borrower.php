@@ -18,7 +18,6 @@ try {
         PDO::ATTR_ERRMODE,
         PDO::ERRMODE_EXCEPTION
     );
-
 } catch (PDOException $e) {
 
     die('Database connection failed.');
@@ -127,13 +126,11 @@ if (
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1"
-    >
+        content="width=device-width, initial-scale=1">
 
     <title>BORROWER'S CRUD</title>
 
     <style>
-
         body {
             font-family: Arial, sans-serif;
             max-width: 900px;
@@ -181,7 +178,6 @@ if (
         .nav-links a {
             text-decoration: none;
         }
-
     </style>
 
 </head>
@@ -190,11 +186,19 @@ if (
     <nav class="navbar">
         <h1>BORROWER'S CRUD</h1>
         <ul class="nav-links">
-            <li><a href="equipment.php">Equipment</a></li>
-            <li><a href="transactions.php">Transactions</a></li>
-            <li><a href="records.php">Records</a></li>
+            <li><a href="week6.php">Week 6</a></li>
+            <li><a href="week7.php">Week 7</a></li>
+            <li><a href="week8.php">Week 8</a></li>
+            <li><a href="week10.php">Week 10</a></li>
         </ul>
-    </nav> <hr>
+    </nav>
+    <div class="col-12 d-flex justify-content-between align-items-center">
+        <a href="#">Borrowers</a>
+        <a href="equipment.php">Equipment</a>
+        <a href="transactions.php">Transactions</a>
+        <a href="records.php">Records</a>
+    </div>
+    <hr>
 
 
     <h2>ADD BORROWER</h2>
@@ -204,28 +208,24 @@ if (
         <input
             type="hidden"
             name="action"
-            value="create"
-        >
+            value="create">
 
         <input
             type="text"
             name="borrower_no"
             placeholder="Borrower No."
-            required
-        >
+            required>
 
         <input
             type="text"
             name="full_name"
             placeholder="Full Name"
-            required
-        >
+            required>
 
         <input
             type="text"
             name="borrower_type"
-            placeholder="Borrower Type"
-        >
+            placeholder="Borrower Type">
 
         <button type="submit">
             Add Borrower
@@ -254,74 +254,71 @@ if (
 
         <tbody>
 
-        <?php foreach ($borrowers as $borrower): ?>
+            <?php foreach ($borrowers as $borrower): ?>
 
-            <tr>
+                <tr>
 
-                <td>
-                    <?= (int)$borrower['borrower_id'] ?>
-                </td>
+                    <td>
+                        <?= (int)$borrower['borrower_id'] ?>
+                    </td>
 
-                <td>
-                    <?=
+                    <td>
+                        <?=
                         htmlspecialchars(
                             $borrower['borrower_no'],
                             ENT_QUOTES,
                             'UTF-8'
                         )
-                    ?>
-                </td>
+                        ?>
+                    </td>
 
-                <td>
-                    <?=
+                    <td>
+                        <?=
                         htmlspecialchars(
                             $borrower['full_name'],
                             ENT_QUOTES,
                             'UTF-8'
                         )
-                    ?>
-                </td>
+                        ?>
+                    </td>
 
-                <td>
-                    <?=
+                    <td>
+                        <?=
                         htmlspecialchars(
                             $borrower['borrower_type'] ?? '',
                             ENT_QUOTES,
                             'UTF-8'
                         )
-                    ?>
-                </td>
+                        ?>
+                    </td>
 
-                <td>
+                    <td>
 
-                    <form
-                        method="post"
-                        style="display:inline"
-                    >
+                        <form
+                            method="post"
+                            style="display:inline">
 
-                        <input
-                            type="hidden"
-                            name="action"
-                            value="delete"
-                        >
+                            <input
+                                type="hidden"
+                                name="action"
+                                value="delete">
 
-                        <input
-                            type="hidden"
-                            name="borrower_id"
-                            value="<?= (int)$borrower['borrower_id'] ?>"
-                        >
+                            <input
+                                type="hidden"
+                                name="borrower_id"
+                                value="<?= (int)$borrower['borrower_id'] ?>">
 
-                        <button type="submit">
-                            Delete
-                        </button>
+                            <button type="submit">
+                                Delete
+                            </button>
 
-                    </form>
+                        </form>
 
-                </td>
+                    </td>
 
-            </tr>
+                </tr>
 
-        <?php endforeach; ?>
+            <?php endforeach; ?>
 
         </tbody>
 
@@ -337,39 +334,35 @@ if (
         <input
             type="hidden"
             name="action"
-            value="update"
-        >
+            value="update">
 
         <input
             type="number"
             name="borrower_id"
             placeholder="Borrower ID"
-            required
-        >
+            required>
 
         <input
             type="text"
             name="borrower_no"
-            placeholder="Borrower No."
-        >
+            placeholder="Borrower No.">
 
         <input
             type="text"
             name="full_name"
-            placeholder="Full Name"
-        >
+            placeholder="Full Name">
 
         <input
             type="text"
             name="borrower_type"
-            placeholder="Borrower Type"
-        >
+            placeholder="Borrower Type">
 
         <button type="submit">
             Update
         </button>
 
-    </form> <hr>
+    </form>
+    <hr>
 
 </body>
 

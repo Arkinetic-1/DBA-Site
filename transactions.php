@@ -18,7 +18,6 @@ try {
         PDO::ATTR_ERRMODE,
         PDO::ERRMODE_EXCEPTION
     );
-
 } catch (PDOException $e) {
 
     die('Database connection failed.');
@@ -34,7 +33,7 @@ if (
     ($_POST['action'] ?? '') === 'create'
 ) {
 
-   $stmt = $pdo->prepare(
+    $stmt = $pdo->prepare(
         'INSERT INTO borrow_transactions
             (borrower_id, borrow_date, due_date, status)
          VALUES
@@ -93,7 +92,7 @@ if (
     ($_POST['action'] ?? '') === 'delete'
 ) {
 
-     $stmt = $pdo->prepare(
+    $stmt = $pdo->prepare(
         'DELETE FROM borrow_transactions
          WHERE borrow_id = :borrow_id'
     );
@@ -130,13 +129,11 @@ $borrow_transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1"
-    >
+        content="width=device-width, initial-scale=1">
 
     <title>BORROWER'S CRUD</title>
 
     <style>
-
         body {
             font-family: Arial, sans-serif;
             max-width: 900px;
@@ -184,7 +181,6 @@ $borrow_transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
         .nav-links a {
             text-decoration: none;
         }
-
     </style>
 
 </head>
@@ -193,11 +189,19 @@ $borrow_transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <nav class="navbar">
         <h1>BORROWER'S CRUD</h1>
         <ul class="nav-links">
-            <li><a href="borrower.php">Borrowers</a></li>
-            <li><a href="equipment.php">Equipment</a></li>
-            <li><a href="records.php">Records</a></li>
+            <li><a href="week6.php">Week 6</a></li>
+            <li><a href="week7.php">Week 7</a></li>
+            <li><a href="week8.php">Week 8</a></li>
+            <li><a href="week10.php">Week 10</a></li>
         </ul>
-    </nav> <hr>
+    </nav>
+    <div class="col-12 d-flex justify-content-between align-items-center">
+        <a href="borrower.php">Borrowers</a>
+        <a href="equipment.php">Equipment</a>
+        <a href="#">Transactions</a>
+        <a href="records.php">Records</a>
+    </div>
+    <hr>
 
 
     <h2>ADD TRANSACTION </h2>
@@ -207,34 +211,29 @@ $borrow_transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <input
             type="hidden"
             name="action"
-            value="create"
-        >
+            value="create">
 
         <input
             type="text"
             name="borrower_no"
             placeholder="Borrower No."
-            required
-        >
+            required>
 
         <input
             type="date"
             name="borrow_date"
             placeholder="Borrow Date"
-            required
-        >
+            required>
 
         <input
             type="date"
             name="due_date"
-            placeholder="Due Date"
-        >
+            placeholder="Due Date">
 
         <input
             type="text"
             name="status"
-            placeholder="Status"
-        >
+            placeholder="Status">
 
         <button type="submit">
             Add Transaction
@@ -264,84 +263,81 @@ $borrow_transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <tbody>
 
-        <?php foreach ($borrow_transactions as $ts): ?>
+            <?php foreach ($borrow_transactions as $ts): ?>
 
-            <tr>
+                <tr>
 
-                <td>
-                    <?= (int)$ts['borrow_id'] ?>
-                </td>
+                    <td>
+                        <?= (int)$ts['borrow_id'] ?>
+                    </td>
 
-                <td>
-                    <?=
+                    <td>
+                        <?=
                         htmlspecialchars(
                             $ts['borrower_id'],
                             ENT_QUOTES,
                             'UTF-8'
                         )
-                    ?>
-                </td>
+                        ?>
+                    </td>
 
-                <td>
-                    <?=
+                    <td>
+                        <?=
                         htmlspecialchars(
                             $ts['borrow_date'],
                             ENT_QUOTES,
                             'UTF-8'
                         )
-                    ?>
-                </td>
+                        ?>
+                    </td>
 
-                <td>
-                    <?=
+                    <td>
+                        <?=
                         htmlspecialchars(
                             $ts['due_date'],
                             ENT_QUOTES,
                             'UTF-8'
                         )
-                    ?>
-                </td>
+                        ?>
+                    </td>
 
-                <td>
-                    <?=
+                    <td>
+                        <?=
                         htmlspecialchars(
                             $ts['status'],
                             ENT_QUOTES,
                             'UTF-8'
                         )
-                    ?>
-                </td>
+                        ?>
+                    </td>
 
-                <td>
+                    <td>
 
-                    <form
-                        method="post"
-                        style="display:inline"
-                    >
+                        <form
+                            method="post"
+                            style="display:inline">
 
-                        <input
-                            type="hidden"
-                            name="action"
-                            value="delete"
-                        >
+                            <input
+                                type="hidden"
+                                name="action"
+                                value="delete">
 
-                        <input
-                            type="hidden"
-                            name="borrow_id"
-                            value="<?= (int)$ts['borrow_id'] ?>"
-                        >
+                            <input
+                                type="hidden"
+                                name="borrow_id"
+                                value="<?= (int)$ts['borrow_id'] ?>">
 
-                        <button type="submit">
-                            Delete
-                        </button>
+                            <button type="submit">
+                                Delete
+                            </button>
 
-                    </form>
+                        </form>
 
-                </td>
+                    </td>
 
-            </tr>
+                </tr>
 
-        <?php endforeach; ?>
+            <?php endforeach; ?>
 
         </tbody>
 
@@ -350,48 +346,42 @@ $borrow_transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <hr>
 
 
-     <h2>Update Transaction</h2>
+    <h2>Update Transaction</h2>
 
     <form method="post">
 
         <input
             type="hidden"
             name="action"
-            value="update"
-        >
+            value="update">
 
         <input
             type="number"
             name="borrow_id"
             placeholder="Borrow ID"
-            required
-        >
+            required>
 
         <input
             type="integer"
             name="borrower_id"
             placeholder="Borrower ID"
-            required
-        >
+            required>
 
         <input
             type="date"
             name="borrow_date"
             placeholder="Borrow Date"
-            required
-        >
+            required>
 
         <input
             type="date"
             name="due_date"
-            placeholder="Due Date"
-        >
+            placeholder="Due Date">
 
         <input
             type="text"
             name="status"
-            placeholder="Status"
-        >
+            placeholder="Status">
 
         <button type="submit">
             Update

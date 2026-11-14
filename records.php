@@ -18,7 +18,6 @@ try {
         PDO::ATTR_ERRMODE,
         PDO::ERRMODE_EXCEPTION
     );
-
 } catch (PDOException $e) {
 
     die('Database connection failed.');
@@ -127,13 +126,11 @@ $borrow_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1"
-    >
+        content="width=device-width, initial-scale=1">
 
     <title>BORROWER'S CRUD</title>
 
     <style>
-
         body {
             font-family: Arial, sans-serif;
             max-width: 900px;
@@ -181,7 +178,6 @@ $borrow_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
         .nav-links a {
             text-decoration: none;
         }
-
     </style>
 
 </head>
@@ -190,11 +186,19 @@ $borrow_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <nav class="navbar">
         <h1>BORROWER'S CRUD</h1>
         <ul class="nav-links">
-            <li><a href="borrower.php">Borrowers</a></li>
-            <li><a href="equipment.php">Equipment</a></li>
-            <li><a href="transactions.php">Transactions</a></li>
+            <li><a href="week6.php">Week 6</a></li>
+            <li><a href="week7.php">Week 7</a></li>
+            <li><a href="week8.php">Week 8</a></li>
+            <li><a href="week10.php">Week 10</a></li>
         </ul>
-    </nav> <hr>
+    </nav>
+    <div class="col-12 d-flex justify-content-between align-items-center">
+        <a href="borrower.php">Borrowers</a>
+        <a href="equipment.php">Equipment</a>
+        <a href="transactions.php">Transactions</a>
+        <a href="#">Records</a>
+    </div>
+   <hr>
 
 
     <h2>ADD BORROW RECORD </h2>
@@ -204,29 +208,25 @@ $borrow_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <input
             type="hidden"
             name="action"
-            value="create"
-        >
+            value="create">
 
         <input
             type="integer"
             name="borrow_id"
             placeholder="Borrow ID"
-            required
-        >
+            required>
 
         <input
             type="integer"
             name="equipment_id"
             placeholder="Equipment ID"
-            required
-        >
+            required>
 
         <input
             type="number"
             name="quantity"
             placeholder="Quantity"
-            required
-        >
+            required>
 
         <button type="submit">
             Add Borrow Record
@@ -255,74 +255,71 @@ $borrow_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <tbody>
 
-        <?php foreach ($borrow_items as $bi): ?>
+            <?php foreach ($borrow_items as $bi): ?>
 
-            <tr>
+                <tr>
 
-                <td>
-                    <?= (int)$bi['borrow_item_id'] ?>
-                </td>
+                    <td>
+                        <?= (int)$bi['borrow_item_id'] ?>
+                    </td>
 
-                <td>
-                    <?=
+                    <td>
+                        <?=
                         htmlspecialchars(
                             $bi['borrow_id'],
                             ENT_QUOTES,
                             'UTF-8'
                         )
-                    ?>
-                </td>
+                        ?>
+                    </td>
 
-                <td>
-                    <?=
+                    <td>
+                        <?=
                         htmlspecialchars(
                             $bi['equipment_id'],
                             ENT_QUOTES,
                             'UTF-8'
                         )
-                    ?>
-                </td>
+                        ?>
+                    </td>
 
-                <td>
-                    <?=
+                    <td>
+                        <?=
                         htmlspecialchars(
                             $bi['quantity'] ?? '',
                             ENT_QUOTES,
                             'UTF-8'
                         )
-                    ?>
-                </td>
+                        ?>
+                    </td>
 
-                <td>
+                    <td>
 
-                    <form
-                        method="post"
-                        style="display:inline"
-                    >
+                        <form
+                            method="post"
+                            style="display:inline">
 
-                        <input
-                            type="hidden"
-                            name="action"
-                            value="delete"
-                        >
+                            <input
+                                type="hidden"
+                                name="action"
+                                value="delete">
 
-                        <input
-                            type="hidden"
-                            name="borrow_item_id"
-                            value="<?= (int)$bi['borrow_item_id'] ?>"
-                        >
+                            <input
+                                type="hidden"
+                                name="borrow_item_id"
+                                value="<?= (int)$bi['borrow_item_id'] ?>">
 
-                        <button type="submit">
-                            Delete
-                        </button>
+                            <button type="submit">
+                                Delete
+                            </button>
 
-                    </form>
+                        </form>
 
-                </td>
+                    </td>
 
-            </tr>
+                </tr>
 
-        <?php endforeach; ?>
+            <?php endforeach; ?>
 
         </tbody>
 
@@ -338,35 +335,30 @@ $borrow_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <input
             type="hidden"
             name="action"
-            value="update"
-        >
+            value="update">
 
         <input
             type="number"
             name="borrow_item_id"
             placeholder="Borrow Item ID"
-            required
-        >
+            required>
 
         <input
             type="integer"
             name="borrower_id"
             placeholder="Borrower ID"
-            required
-        >
+            required>
 
         <input
             type="integer"
             name="equipment_id"
             placeholder="Equipment ID"
-            required
-        >
+            required>
 
         <input
             type="integer"
             name="quantity"
-            placeholder="Quantity"
-        >
+            placeholder="Quantity">
 
         <button type="submit">
             Update
