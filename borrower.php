@@ -183,7 +183,7 @@ if (
 
 </head>
 
-<body>
+<body data-bs-theme="dark">
     <nav class="navbar">
         <h1>BORROWER'S CRUD</h1>
         <ul class="nav-links">
