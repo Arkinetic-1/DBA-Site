@@ -186,19 +186,14 @@ if (
 <body data-bs-theme="dark">
     <nav class="navbar">
         <h1>BORROWER'S CRUD</h1>
-        <ul class="nav-links">
-            <li><a href="week6.php">Week 6</a></li>
-            <li><a href="week7.php">Week 7</a></li>
-            <li><a href="week8.php">Week 8</a></li>
-            <li><a href="week10.php">Week 10</a></li>
-        </ul>
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <!-- <a href="#">Borrowers</a>
+            <a href="equipment.php">Equipment</a>
+            <a href="transactions.php">Transactions</a>
+            <a href="records.php">Records</a> -->
+        </div>
     </nav>
-    <div class="col-12 d-flex justify-content-between align-items-center">
-        <a href="#">Borrowers</a>
-        <a href="equipment.php">Equipment</a>
-        <a href="transactions.php">Transactions</a>
-        <a href="records.php">Records</a>
-    </div>
+
     <hr>
 
 
