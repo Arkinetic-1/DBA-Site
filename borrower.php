@@ -187,8 +187,8 @@ if (
     <nav class="navbar">
         <h1>BORROWER'S CRUD</h1>
         <div class="col-12 d-flex justify-content-between align-items-center">
-            <!-- <a href="#">Borrowers</a>
-            <a href="equipment.php">Equipment</a>
+            <a href="#">Borrowers</a>
+            <!-- <a href="equipment.php">Equipment</a>
             <a href="transactions.php">Transactions</a>
             <a href="records.php">Records</a> -->
         </div>
